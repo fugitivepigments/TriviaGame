@@ -5,8 +5,10 @@ var wins = 0;
 var losses = 0;
 var unanswered = 0;
 var qCount = 0;
+var currentQuestion = 0;
 
-var q1 = {
+var questions = [
+    {
     question: "QUESTION: Which skater is the Big Spin named for?",
     answers: {
         A: "Tony Hawk",
@@ -15,8 +17,8 @@ var q1 = {
         D: "Jason Dill",
     },
     image: "<img class='img-fluid text-center' src='assets/images/brianlotti.gif'>"
-}
-var q2 = {
+},
+{
     question: "QUESTION: Which one of these actors was once a pro-skateboarder?",
     answers: {
         A: "Jason Lee",
@@ -25,8 +27,8 @@ var q2 = {
         D: "Will Smith",
     },
     image: "<img class='img-fluid text-center' src='assets/images/jasonlee.gif'>"
-}
-var q3 = {
+},
+{
     question: "QUESTION: When asked who Jerry Hsu's favorite Asian skater was, he answered:",
     answers: {
         A: "Phil Song",
@@ -35,8 +37,8 @@ var q3 = {
         D: "Gimp",
     },
     image: "<img class='img-fluid text-center' src='assets/images/jeremyklein.gif'>"
-}
-var q4 = {
+},
+{
     question: "QUESTION: Who coined the terms 'mob' and 'flick'?",
     answers: {
         A: "Bam Margera",
@@ -45,8 +47,8 @@ var q4 = {
         D: "Brandon Westgate",
     },
     image: "<img class='img-fluid text-center' src='assets/images/jimgreco.gif'>"
-}
-var q5 = {
+},
+{
     question: "QUESTION: Who was the first skater to get a trick on film at the Wilshire 10 rail?",
     answers: {
         A: "The Gonz",
@@ -55,13 +57,16 @@ var q5 = {
         D: "Merle",
     },
     image: "<img class='img-fluid text-center' src='assets/images/gonz.gif'>"
-}
+},
+];
+
 $(document).ready(function () {
 
     //start button to initialize
     $("#start").on("click", function () {
         $(".reset-container").empty();
-        $("#timer").html(timer); $("#question").text(q1.question);
+        $("#timer").html(timer); 
+        $("#question").text(q1.question);
         $("#a1").html(q1.answers.A);
     });
     
