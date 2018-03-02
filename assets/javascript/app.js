@@ -6,68 +6,19 @@ var losses = 0;
 var unanswered = 0;
 var qCount = 0;
 var currentQuestion = 0;
+var gameCont;
+var correctAnswers = ["B: Brian Lotti", "A: Jason Lee", "C: Jeremy Klein", "C: Jim Greco", "D: The Gonz"];
+var answers = [["Tony Hawk", "Brian Lotti", "Tommy Chong", "Jason Dill"], ["Jason Lee", "Tom Cruise", "Cheech Marin", "Will Smith"], ["Phil Song", "Brion Baer", "Jeremy Klein", "Gimp"], ["Bam Margera", "Z Boys", "Jim Greco", "Brandon Westgate"] ["Merle", "Leticia Buffoni", "A fruit-booter", "The Gonz"]];
+var gifs = ["<img class='img-fluid text-center' src='assets/images/brianlotti.gif'>", "<img class='img-fluid text-center' src='assets/images/jasonlee.gif'>", "<img class='img-fluid text-center' src='assets/images/jeremyklein.gif'>", "<img class='img-fluid text-center' src='assets/images/jimgreco.gif'>", "<img class='img-fluid text-center' src='assets/images/gonz.gif'>"];
+var questions = ["Which skater is the Big Spin named for?", "Which one of these actors was once a pro-skateboarder?", "When asked who Jerry Hsu's favorite Asian skater was, he answered:", "Who coined the terms 'mob' and 'flick'?", "Who was the first skater to get a trick on film at the Wilshire 10 rail?"];
 
-var questions = [
-    {
-    question: "QUESTION: Which skater is the Big Spin named for?",
-    answers: {
-        A: "Tony Hawk",
-        B: "Brian Lotti",
-        C: "Tommy Chong",
-        D: "Jason Dill",
-    },
-    image: "<img class='img-fluid text-center' src='assets/images/brianlotti.gif'>"
-},
-{
-    question: "QUESTION: Which one of these actors was once a pro-skateboarder?",
-    answers: {
-        A: "Jason Lee",
-        B: "Tom Cruise",
-        C: "Cheech Marin",
-        D: "Will Smith",
-    },
-    image: "<img class='img-fluid text-center' src='assets/images/jasonlee.gif'>"
-},
-{
-    question: "QUESTION: When asked who Jerry Hsu's favorite Asian skater was, he answered:",
-    answers: {
-        A: "Phil Song",
-        B: "Brion Baer",
-        C: "Jeremy Klein",
-        D: "Gimp",
-    },
-    image: "<img class='img-fluid text-center' src='assets/images/jeremyklein.gif'>"
-},
-{
-    question: "QUESTION: Who coined the terms 'mob' and 'flick'?",
-    answers: {
-        A: "Bam Margera",
-        B: "Z Boys",
-        C: "Jim Greco",
-        D: "Brandon Westgate",
-    },
-    image: "<img class='img-fluid text-center' src='assets/images/jimgreco.gif'>"
-},
-{
-    question: "QUESTION: Who was the first skater to get a trick on film at the Wilshire 10 rail?",
-    answers: {
-        A: "The Gonz",
-        B: "Leticia Buffoni",
-        C: "A fruit-booter",
-        D: "Merle",
-    },
-    image: "<img class='img-fluid text-center' src='assets/images/gonz.gif'>"
-},
-];
 
 $(document).ready(function () {
 
     //start button to initialize
     $("#start").on("click", function () {
         $(".reset-container").empty();
-        $("#timer").html(timer); 
-        $("#question").text(q1.question);
-        $("#a1").html(q1.answers.A);
+        
     });
     
     function genWin() {
@@ -92,6 +43,9 @@ $(document).ready(function () {
                     $("#timer").text("Time: " + counter);
                 }
             }
+    function genHTML() {
+        
+    }
 });
 //responses:
 //4 divs with correct/incorrect classes
