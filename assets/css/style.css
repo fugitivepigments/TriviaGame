@@ -25,6 +25,25 @@ h2 {
     text-align: center;
 }
 
+.answers {
+  perspective: 1000px;
+  padding: 0;
+  list-style: none;
+}
+
+.ans {
+  background-color: white;
+  transition: all .3s ease;
+  cursor: pointer;
+  margin: 8px 0;
+}
+
+.ans:hover {
+  transform: translate3d(0,0,60px);
+  background: #EFEFEF;
+
+}
+
 footer {
     font-family: 'Monoton', cursive;
     padding: 3px 0;
@@ -49,6 +68,7 @@ footer {
     color: #fff;
     opacity: .99;
     width: 70%;
+    cursor: pointer;
 }
 
 #game-container {

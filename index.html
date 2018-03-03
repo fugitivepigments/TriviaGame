@@ -26,13 +26,18 @@
   <div class="d-none game-container col-md-12 text-center">
     <p><span class="timer"></span></p>
     <p><span class="question"></span></p>
-    <div><p><span class="ans ansOne"></span></p></div>
-    <div><p><span class="ans ansTwo"></span></p></div>
-    <div><p><span class="ans ansThree"></span></p></div>
-    <div><p><span class="ans ansFour"></span></p></div>
+
+    <ul class="answers">
+      <li class="ans ansOne"></li>
+      <li class="ans ansTwo"></li>
+      <li class="ans ansThree"></li>
+      <li class="ans ansFour"></li>
+    </ul>
   </div>
-  <div class="d-none game-container col-md-12 text-center">
+  
+  <div class="d-none winloss-container col-md-12 text-center">
     <p><span class="result text-center"></span></p>
+    <p><span class="result2 text-center"></span></p>
     <p><span class="resultGif text-center"></span></p>
   </div>
   <div class="container reset-container">
@@ -42,31 +47,15 @@
         <p>Click the start button to begin</p>
       </div>
     </div>
+    
     <div>
-      <img class="img-fluid text-center" src="assets/images/A5W0ebS.gif" alt="Young Tony Hawk gif pool skating">
+      <img class="img-fluid text-center d-block mx-auto" src="assets/images/A5W0ebS.gif" alt="Young Tony Hawk gif pool skating">
     </div>
     <br>
     <div class="container text-center"><button id="start" class="reset-button">START YO!</button>
     </div>
   </div>
   <br>
-  <!--
-  <div class="container-fluid jumbotron">
-    <div class="row">
-      <div class="col-md-4">
-        <h2>COMPUTER NUMBER: <span id="compNumber"></span></h2>
-      </div>
-      <div class="col-md-4">
-        <h2>WINS:<span id="wins"></span></h2>
-        <br>
-        <h2>LOSSES:<span id="losses"></span></h2>
-      </div>
-      <div class="col-md-4">
-        <h2>YOUR NUMBER: <span id="yourNumber"></span></h2>
-      </div>
-    </div>
-  </div>
--->
   <br>
   <div class="container d-none reset-container text-center"><button class="reset-button">Reset</button></div>
   <br>
@@ -77,4 +66,5 @@
   </div>
   <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
+
 </html>
