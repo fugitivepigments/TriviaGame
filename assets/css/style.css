@@ -63,7 +63,7 @@ footer {
     text-align: center;
 }
 
-#start {
+.reset-button {
     background: #666;
     color: #fff;
     opacity: .99;

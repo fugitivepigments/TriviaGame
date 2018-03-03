@@ -4,7 +4,6 @@ var counter = 30;
 var wins = 0;
 var losses = 0;
 var unanswered = 0;
-var qCount = 0;
 var currentQuestion = 0;
 var clickedAnswer;
 
@@ -66,41 +65,44 @@ var questions = [
 }
 ];
 
-
-
 $(document).ready(function () {
 
     //start button to initialize
-    $("#start").on("click", function () {
+    $(".reset-button").on("click", function() {
         $(".reset-container").empty();
+        $(".winloss-container").addClass("d-none");
+        $(".reset-button").addClass("d-none");
         $(".game-container").removeClass("d-none");
+        currentQuestion = 0;
+        unanswered = 0;
+        wins = 0;
+        losses = 0;
         showQuestion();
     });
 
-    
-    $(".ans").on("click", function() {
+
+    $(".ans").on("click", function () {
         clickedAnswer = $(this).text();
 
         if (clickedAnswer === questions[currentQuestion].correctAnswer) {
             console.log("NAILED IT");
             clearInterval(clock);
             genWin();
-        }
-        else {
+        } else {
             console.log("OOPS");
             clearInterval(clock);
             genLoss();
         }
-      console.log( $(this).text() );
+        console.log($(this).text());
     });
 
     function showQuestion() {
-      timer();
-      $(".question").text(questions[currentQuestion].question);
-      $(".ansOne").text("A: " + questions[currentQuestion].answers.A);
-      $(".ansTwo").text("B: " + questions[currentQuestion].answers.B);
-      $(".ansThree").text("C: " + questions[currentQuestion].answers.C);
-      $(".ansFour").text("D: " + questions[currentQuestion].answers.D);
+        timer();
+        $(".question").text(questions[currentQuestion].question);
+        $(".ansOne").text("A: " + questions[currentQuestion].answers.A);
+        $(".ansTwo").text("B: " + questions[currentQuestion].answers.B);
+        $(".ansThree").text("C: " + questions[currentQuestion].answers.C);
+        $(".ansFour").text("D: " + questions[currentQuestion].answers.D);
     }
 
     function genWin() {
@@ -122,33 +124,36 @@ $(document).ready(function () {
     };
 
     function gameOver() {
-      $(".game-container").addClass("d-none");
-      $(".winloss-container").removeClass("d-none");
-      $(".result").text("GAME OVER! You had " + losses + " wrong and " + wins + " right answers.");
-      $(".resultGif").html('');
+        $(".game-container").addClass("d-none");
+        $(".winloss-container").removeClass("d-none");
+        $(".reset-button").removeClass("d-none");
+        $(".result").text("GAME OVER! You got " + losses + " wrong and " + wins + " right with " + unanswered + " unanswered.");
+        $(".resultGif").html('');
 
-      if (unanswered) {
-        $(".result2").text("TIME'S UP! MAJOR BAIL!");
-      }
+//        if (unanswered) {
+//            $(".result2").text("TIME'S UP! MAJOR BAIL!");
+//        }
     }
 
     function genUnanswered() {
         unanswered++;
+        $(".game-container").addClass("d-none");
+        $(".winloss-container").removeClass("d-none");
+        $(".result").text("BIFFED IT! The correct answer was " + questions[currentQuestion].correctAnswer);
+        $(".resultGif").html("<img class='img-fluid text-center d-block mx-auto' src='assets/images/fatFail.gif'>");
+        wait();
     };
-    
+
     function wait() {
 
-        // IF THE CURRENT QUESTION IS THE LAST QUESTION
-        // WE WANT TO END THE GAME
-        if (currentQuestion+1 === questions.length) {
-          console.log('GAME OVER');
-          gameOver();
-          return;
-        }
-
         // WAIT 5 SECONDS AND THEN SHOW THE NEXT QUESTION
-        setTimeout(function() {
+        setTimeout(function () {
             currentQuestion++;
+            if (currentQuestion + 1 > questions.length) {
+                console.log('GAME OVER');
+                gameOver();
+                return;
+            }
             $(".reset-container").empty();
             showQuestion();
             $(".game-container").removeClass("d-none");
@@ -170,7 +175,7 @@ $(document).ready(function () {
             if (counter === 0) {
                 clearInterval(clock);
                 genUnanswered();
-                gameOver();
+//                gameOver();
             }
 
             // Count down
