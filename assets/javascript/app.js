@@ -6,6 +6,7 @@ var losses = 0;
 var unanswered = 0;
 var qCount = 0;
 var currentQuestion = 0;
+var clickedAnswer;
 
 var questions = [
     {
@@ -17,7 +18,7 @@ var questions = [
             D: "Jason Dill",
         },
         image: "<img class='img-fluid text-center' src='assets/images/brianlotti.gif'>",
-        correctAnswer: "Brian Lotti",
+        correctAnswer: "B: Brian Lotti",
 },
     {
         question: "QUESTION: Which one of these actors was once a pro-skateboarder?",
@@ -28,7 +29,7 @@ var questions = [
             D: "Will Smith",
         },
         image: "<img class='img-fluid text-center' src='assets/images/jasonlee.gif'>",
-        correctAnswer: "Jason Lee",
+        correctAnswer: "A: Jason Lee",
 },
     {
         question: "QUESTION: When asked who Jerry Hsu's favorite Asian skater was, he answered:",
@@ -39,7 +40,7 @@ var questions = [
             D: "Gimp",
         },
         image: "<img class='img-fluid text-center' src='assets/images/jeremyklein.gif'>",
-        correctAnswer: "Jeremy Klein",
+        correctAnswer: "C: Jeremy Klein",
 },
     {
         question: "QUESTION: Who coined the terms 'mob' and 'flick'?",
@@ -50,7 +51,7 @@ var questions = [
             D: "Brandon Westgate",
         },
         image: "<img class='img-fluid text-center' src='assets/images/jimgreco.gif'>",
-        correctAnswer: "Jim Greco",
+        correctAnswer: "C: Jim Greco",
 },
     {
         question: "QUESTION: Who was the first skater to get a trick on film at the Wilshire 10 rail?",
@@ -61,7 +62,7 @@ var questions = [
             D: "The Gonz",
         },
         image: "<img class='img-fluid text-center' src='assets/images/gonz.gif'>",
-        correctAnswer: "The Gonz",
+        correctAnswer: "D: The Gonz",
 }
 ];
 
@@ -72,25 +73,52 @@ $(document).ready(function () {
     //start button to initialize
     $("#start").on("click", function () {
         $(".reset-container").empty();
-        timer();
-        $(".question").text(questions[currentQuestion].question);
-        $(".ansOne").text("A: " + questions[currentQuestion].answers.A);
-        $(".ansTwo").text("B: " + questions[currentQuestion].answers.B);
-        $(".ansThree").text("C: " + questions[currentQuestion].answers.C);
-        $(".ansFour").text("D: " + questions[currentQuestion].answers.D);
-
+        showQuestion();
     });
+
+    function showQuestion() {
+      timer();
+      $(".question").text(questions[currentQuestion].question);
+      $(".ansOne").text("A: " + questions[currentQuestion].answers.A);
+      $(".ansTwo").text("B: " + questions[currentQuestion].answers.B);
+      $(".ansThree").text("C: " + questions[currentQuestion].answers.C);
+      $(".ansFour").text("D: " + questions[currentQuestion].answers.D);
+
+      $(".ans").on("click", function() {
+          clickedAnswer = $(this).text();
+          if (clickedAnswer === questions[currentQuestion].correctAnswer) {
+              console.log("NAILED IT");
+              clearInterval(clock);
+              genWin();
+          }
+          else {
+              console.log("OOPS");
+          }
+        console.log( $(this).text() );
+      })
+    }
 
     function genWin() {
         wins++;
+        $(".game-container").empty();
+        $(".result").html("NAILED IT!");
+        $(".game-container").html(questions[currentQuestion].image);
     };
 
     function genLoss() {
         losses++;
+        $(".game-container").empty();
+        $(".result").text("BIFFED IT! The correct answer was Brian Lotti.");
+        $(".game-container").html(questions[currentQuestion].image);
+        
     }
 
     function genUnanswered() {
         unanswered++;
+    }
+    
+    function wait() {
+        
     }
 
     function timer() {
