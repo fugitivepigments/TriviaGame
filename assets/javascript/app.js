@@ -73,11 +73,12 @@ $(document).ready(function () {
     //start button to initialize
     $("#start").on("click", function () {
         $(".reset-container").empty();
+        $(".game-container").removeClass("d-none");
         showQuestion();
     });
 
     function showQuestion() {
-      timer();
+        timer();
       $(".question").text(questions[currentQuestion].question);
       $(".ansOne").text("A: " + questions[currentQuestion].answers.A);
       $(".ansTwo").text("B: " + questions[currentQuestion].answers.B);
@@ -93,6 +94,8 @@ $(document).ready(function () {
           }
           else {
               console.log("OOPS");
+              clearInterval(clock);
+              genLoss();
           }
         console.log( $(this).text() );
       })
@@ -100,26 +103,34 @@ $(document).ready(function () {
 
     function genWin() {
         wins++;
-        $(".game-container").empty();
-        $(".result").html("NAILED IT!");
-        $(".game-container").html(questions[currentQuestion].image);
+        $(".game-container").addClass("d-none");
+        $(".result").text("NAILED IT! " + questions[currentQuestion].correctAnswer + " is CORRECTOMUNDO!");
+        $(".resultGif").html(questions[currentQuestion].image);
+        wait();
     };
 
     function genLoss() {
         losses++;
-        $(".game-container").empty();
-        $(".result").text("BIFFED IT! The correct answer was Brian Lotti.");
-        $(".game-container").html(questions[currentQuestion].image);
+        $(".game-container").addClass("d-none");
+        $(".result").text("BIFFED IT! The correct answer was " + questions[currentQuestion].correctAnswer);
+        $(".resultsGif").html(questions[currentQuestion].image);
         
-    }
+    };
 
     function genUnanswered() {
         unanswered++;
-    }
+    };
     
     function wait() {
-        
-    }
+        setTimeout(function() {
+            currentQuestion++;
+            $(".result, .resultGif").addClass("d-none");
+            $(".game-container").removeClass("d-none");
+            showQuestion();
+            clearInterval(clock);
+            timer();
+        }, 4000);
+    };
 
     function timer() {
         clock = setInterval(thirtySeconds, 1000);

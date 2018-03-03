@@ -11,12 +11,12 @@ h1 {
     font-size: 80px;
     text-align: center;
     background: white;
-    opacity: .9;
+    opacity: .99;
 }
 
 p {
     background: white;
-    opacity: .9;
+    opacity: .99;
 }
 
 h2 {
@@ -47,13 +47,13 @@ footer {
 #start {
     background: #666;
     color: #fff;
-    opacity: .95;
+    opacity: .99;
     width: 70%;
 }
 
 #game-container {
     background: #fff;
-    opacity: .95;
+    opacity: .99;
 }
 
 // Extra small devices (portrait phones, less than 576px)
